@@ -1,0 +1,31 @@
+services:
+  prometheus:
+    image: 'prom/prometheus'
+    restart: 'on-failure:3'
+    container_name: prometheus_cntnr
+    ports: 
+      - "9090:9090"
+    volumes:
+      - prometheus_vol:/prometheus
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+  
+  grafana: 
+    image: "grafana/grafana"
+    ports:
+      - "3000:3000"
+    restart: "on-failure:3"
+    container_name: grafana_cntnr
+    volumes:
+      - grafana-vol:/var/lib/grafana
+
+  backend:
+    build: '.'
+    ports:
+      - "22000:22000"
+    container_name: backend_cntnr
+    restart: "always"
+
+
+volumes:
+  grafana-vol:
+  prometheus_vol:
