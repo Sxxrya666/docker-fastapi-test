@@ -18,8 +18,8 @@ pipeline {
             }
         }
         
-        stage('deploy') { 
-            echo "Preparing to deploy...."
-        }
+        // stage('deploy') { 
+        //     echo "Preparing to deploy...."
+        // }
     }
 }
