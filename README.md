@@ -9,5 +9,4 @@
 - [x] ~~create vps in ec2 and init the bare metal server~~
 - [x] setup my laptop-as-server to deploy and pull images
 
-
-- [ ] test run entire infra 3 times
+- [ ] test run entire infra 3 times 
