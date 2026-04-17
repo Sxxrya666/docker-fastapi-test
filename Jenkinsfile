@@ -4,7 +4,7 @@ pipeline {
     stages { 
         stage('build image') { 
             steps { 
-                sh 'whoami'
+                sh 'echo i ammm $(whoami)'
                 withCredentials([
                     usernamePassword( 
                         credentialsId: "docker-creds", 
