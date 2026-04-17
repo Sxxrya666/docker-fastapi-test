@@ -4,8 +4,7 @@ pipeline {
     stages { 
         stage('build image') { 
             steps { 
-                sh 'echo i ammm $(whoami)'
-                sh 'id'
+                echo "[build-stage-log] STARTED BUILDING THE IMAGE....."
                 withCredentials([
                     usernamePassword( 
                         credentialsId: "docker-creds", 
@@ -16,7 +15,7 @@ pipeline {
                         sh "docker build -t saucebxss/nimap-devops-assignment:latest ."
                         sh "docker push saucebxss/nimap-devops-assignment:latest"
                     }
-                
+                echo "[build-stage-log] FINISHED BUILDING and PUSHED THE IMAGE SUCCESSFULLY!!"
             }
         }
         
@@ -27,6 +26,7 @@ pipeline {
             steps { 
                 echo "current branch is ---> ${env.BRANCH_NAME}"
                 echo "Preparing to deploy...."
+                sh 'docker compose up -d'
                 echo "deployed to server successfully!"
             }
         }

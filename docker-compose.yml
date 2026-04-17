@@ -1,7 +1,7 @@
 services:
   prometheus:
     image: 'prom/prometheus'
-    restart: 'on-failure:3'
+    restart: 'unless-stopped'
     container_name: prometheus_cntnr
     ports: 
       - "9090:9090"
@@ -13,19 +13,17 @@ services:
     image: "grafana/grafana"
     ports:
       - "3000:3000"
-    restart: "on-failure:3"
+    restart: "unless-stopped"
     container_name: grafana_cntnr
     volumes:
       - grafana-vol:/var/lib/grafana
 
   backend:
-    build: '.'
+    images: 'saucebxss/nimap-devops-assignment'
     ports:
-      asdflkjasflj
-      asdflkjasflj
       - "22000:22000"
     container_name: backend_cntnr
-    restart: "always"
+    restart: "unless-stopped"
 
 
 volumes:
