@@ -4,6 +4,7 @@ pipeline {
     stages { 
         stage('build image') { 
             steps { 
+                echo "[build-stage-log] STARTED BUILDING THE IMAGE....."
                 withCredentials([
                     usernamePassword( 
                         credentialsId: "docker-creds", 
@@ -14,7 +15,7 @@ pipeline {
                         sh "docker build -t saucebxss/nimap-devops-assignment:latest ."
                         sh "docker push saucebxss/nimap-devops-assignment:latest"
                     }
-                
+                echo "[build-stage-log] FINISHED BUILDING and PUSHED THE IMAGE SUCCESSFULLY!!"
             }
         }
         
@@ -23,9 +24,10 @@ pipeline {
                 branch 'main'
             }
             steps { 
-                echo "current branch is ---> ${env.BRANCH_NAME}"
-                echo "Preparing to deploy...."
-                echo "deployed to server successfully!"
+                echo "[deploy-stage-log] current branch is ---> ${env.BRANCH_NAME}"
+                echo "[deploy-stage-log] Preparing to deploy...."
+                sh 'docker compose up -d'
+                echo "[deploy-stage-log] deployed to server successfully!"
             }
         }
     }
@@ -35,10 +37,10 @@ pipeline {
             echo "My Jenkinsfile executed all the stages. check if its a success or failure..."            
         }
         success { 
-            echo "IF YOU SEE THIS, the script executed successfully"
+            echo "[SUCCESS] IF YOU SEE THIS, the script executed successfully"
         }
         failure { 
-            echo "UH OH! the script execution FAILED!!!"
+            echo "[FAILURE] UH OH! the script execution FAILED!!!"
         }
     }
 }
