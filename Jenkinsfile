@@ -4,6 +4,7 @@ pipeline {
     stages { 
         stage('build image') { 
             steps { 
+                sh 'whoami'
                 withCredentials([
                     usernamePassword( 
                         credentialsId: "docker-creds", 
