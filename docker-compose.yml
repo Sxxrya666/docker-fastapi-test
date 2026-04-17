@@ -19,7 +19,7 @@ services:
       - grafana-vol:/var/lib/grafana
 
   backend:
-    images: 'saucebxss/nimap-devops-assignment'
+    image: 'saucebxss/nimap-devops-assignment'
     ports:
       - "22000:22000"
     container_name: backend_cntnr

@@ -20,11 +20,8 @@ pipeline {
         }
         
         stage('deploy') { 
-            when {
-                branch 'main'
-            }
-            steps { 
-                echo "[deploy-stage-log] current branch is ---> ${env.BRANCH_NAME}"
+            steps {
+                echo "[deploy-stage-log] current branch is ---> ${env.GIT_BRANCH}"
                 echo "[deploy-stage-log] Preparing to deploy...."
                 sh 'docker compose up -d'
                 echo "[deploy-stage-log] deployed to server successfully!"
