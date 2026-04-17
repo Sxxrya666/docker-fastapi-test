@@ -8,6 +8,6 @@
 - [x] configure jenkins web ui to trigger multistage pipeline for image deployment
 - [x] ~~create vps in ec2 and init the bare metal server~~
 - [x] setup my laptop-as-server to deploy and pull images
-
+ 
 
 - [ ] test run entire infra 3 times
