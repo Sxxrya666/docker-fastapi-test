@@ -18,8 +18,29 @@ pipeline {
             }
         }
         
-        // stage('deploy') { 
-        //     echo "Preparing to deploy...."
-        // }
+        stage('deploy') { 
+            when {
+                expression { 
+                    env.BRANCH_NAME == "main"
+                }
+            }
+            steps { 
+                echo "my branch name is below"
+                sh "echo ${env.BRANCH_NAME}"
+                echo "Preparing to deploy...."
+            }
+        }
+    }
+    
+    post { 
+        finally { 
+            echo "My Jenkinsfile executed all the stages. check if its a success or failure..."            
+        }
+        success { 
+            echo "IF YOU SEE THIS, the script executed successfully"
+        }
+        failure { 
+            echo "UH OH! the script execution FAILED!!!"
+        }
     }
 }
