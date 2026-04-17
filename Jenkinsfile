@@ -20,14 +20,12 @@ pipeline {
         
         stage('deploy') { 
             when {
-                expression { 
-                    env.BRANCH_NAME == "main"
-                }
+                branch 'main'
             }
             steps { 
-                echo "my branch name is below"
-                sh "echo ${env.BRANCH_NAME}"
+                echo "current branch is ---> ${env.BRANCH_NAME}"
                 echo "Preparing to deploy...."
+                echo "deployed to server successfully!"
             }
         }
     }
