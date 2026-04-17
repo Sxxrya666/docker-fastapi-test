@@ -31,7 +31,7 @@ pipeline {
     }
     
     post { 
-        finally { 
+        always { 
             echo "My Jenkinsfile executed all the stages. check if its a success or failure..."            
         }
         success { 
